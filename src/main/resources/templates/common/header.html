@@ -31,10 +31,21 @@
       
       <div class="collapse navbar-collapse" id="navbarEexample">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">メニューＡ</a></li>
-          <li><a href="#">メニューＢ</a></li>
-          <li class="navbar-right"><a href="#">メニューＣ</a></li>
+          <li class="active"><a th:href="@{/}">Home</a></li>
+          <li><a th:href="@{/exercises}">Exercises</a></li>
+          <li><a th:href="@{/statistics}">Statistics</a></li>
+          <li><a th:href="@{'/users/' + ${userId} + '/calendar'}">Calendar</a></li>
+          <li><a th:href="@{'/users/' + ${userId} + '/archives'}">Archives</a></li>
+          <li><a th:href="@{'/users/' + ${userId} + '/settings'}">Settings</a></li>
         </ul>
+        <p class="navbar-text navbar-right"><a th:href="@{/login}" class="navbar-link">ログイン
+          </a></p>
+        <p class="navbar-text navbar-right"><a th:href="@{/logout}" class="navbar-link">ログアウト
+          </a></p>
+        <p class="navbar-text navbar-right"><a th:href="@{/register}" class="navbar-link">登録
+          </a></p>
+        <p class="navbar-text navbar-right">ようこそ<a th:href="@{'/users/' + ${userId}}" class="navbar-link">ユーザ名
+          </a>さん</p>
       </div>
     </div>
   </nav>
