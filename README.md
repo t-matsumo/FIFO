@@ -1,8 +1,8 @@
 # README
 
 # System Dependencies
-- JDK1.8 or later
-- MySQL (バージョンは最初に使う人が決めてOKｗｗｗ)
+- JDK 1.8 or later
+- MySQL 5
 
 # How To Build
 In projects root directory.
