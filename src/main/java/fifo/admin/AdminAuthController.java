@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value = "/admin")
-public class AdminAuthenticationController {
+public class AdminAuthController {
   @RequestMapping(value = "/login", method = RequestMethod.GET)
-  public String index() {
-    return "root/index";
+  public String login() {
+    return "admin/index";
   }
 }

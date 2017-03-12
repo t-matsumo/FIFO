@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping(value = "/auth")
-public class UserAuthenticationController {
+public class UserAuthController {
   @RequestMapping(value = "/login", method = RequestMethod.GET)
   public String index() {
     return "root/index";
