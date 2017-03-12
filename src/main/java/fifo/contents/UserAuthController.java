@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserAuthController {
   @RequestMapping(value = "/login", method = RequestMethod.GET)
   public String index() {
-    return "root/index";
+    return "contents/userAuth/index";
   }
 
   @RequestMapping(value = "/logout", method = RequestMethod.GET)
   public String index2() {
-    return "root/index";
+    return "contents/userAuth/index";
   }
 }

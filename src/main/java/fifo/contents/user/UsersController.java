@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class UsersController {
   @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
   public String index(@PathVariable("userId") String userId) {
-    return "root/index";
+    return "contents/user/users/index";
   }
 
   @RequestMapping(value = "/new", method = RequestMethod.GET)
   public String index2() {
-    return "root/index";
+    return "contents/user/users/index";
   }
 }
