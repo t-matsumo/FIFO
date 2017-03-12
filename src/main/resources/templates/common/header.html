@@ -38,11 +38,11 @@
           <li><a th:href="@{'/users/' + ${userId} + '/archives'}">Archives</a></li>
           <li><a th:href="@{'/users/' + ${userId} + '/settings'}">Settings</a></li>
         </ul>
-        <p class="navbar-text navbar-right"><a th:href="@{/login}" class="navbar-link">ログイン
+        <p class="navbar-text navbar-right"><a th:href="@{/auth/login}" class="navbar-link">ログイン
           </a></p>
-        <p class="navbar-text navbar-right"><a th:href="@{/logout}" class="navbar-link">ログアウト
+        <p class="navbar-text navbar-right"><a th:href="@{/auth/logout}" class="navbar-link">ログアウト
           </a></p>
-        <p class="navbar-text navbar-right"><a th:href="@{/register}" class="navbar-link">登録
+        <p class="navbar-text navbar-right"><a th:href="@{/users/new}" class="navbar-link">登録
           </a></p>
         <p class="navbar-text navbar-right">ようこそ<a th:href="@{'/users/' + ${userId}}" class="navbar-link">ユーザ名
           </a>さん</p>
