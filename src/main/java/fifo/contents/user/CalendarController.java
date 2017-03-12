@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class CalendarController {
   @RequestMapping(method = RequestMethod.GET)
   public String index(@PathVariable("userId") String userId) {
-    return "root/index";
+    return "contents/user/calendar/index";
   }
 }

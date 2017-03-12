@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ExercisesController {
   @RequestMapping(method = RequestMethod.GET)
   public String index() {
-    return "root/index";
+    return "contents/exercises/index";
   }
 }
