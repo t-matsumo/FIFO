@@ -1,3 +1,15 @@
 <th:block layout:decorator="common/layout" layout:fragment="content">
-userauth
+  <div th:if="${param.error}">
+    <span class="label label-warning">ユーザ名またはパスワードが間違っています．</span>
+  </div>
+
+  <div th:if="${param.logout}">
+    <span class="label label-info">ログアウトしました．</span>
+  </div>
+
+  <form th:action="@{/auth/login}" method="post">
+    <div><label> ユーザ名 : <input type="text" name="username"/> </label></div>
+    <div><label> パスワード: <input type="password" name="password"/> </label></div>
+    <div><input type="submit" value="ログイン"/></div>
+  </form>
 </th:block>
