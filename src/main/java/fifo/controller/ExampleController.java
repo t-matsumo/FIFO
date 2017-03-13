@@ -1,4 +1,4 @@
-package fifo;
+package fifo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,4 +1,4 @@
-package fifo.admin;
+package fifo.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AdminAuthController {
   @RequestMapping(value = "/login", method = RequestMethod.GET)
   public String login() {
-    return "adminAuth/index";
+    return "admin/adminAuth/index";
   }
 }
