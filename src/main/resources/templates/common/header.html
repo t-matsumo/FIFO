@@ -32,25 +32,34 @@
       <div class="collapse navbar-collapse" id="navbarEexample">
         <ul class="nav navbar-nav">
           <li class="active"><a th:href="@{/}">Home</a></li>
-          <li><a th:href="@{/exercises}">Exercises</a></li>
-          <li><a th:href="@{/statistics}">Statistics</a></li>
-          <li><a th:href="@{'/users/' + ${userId} + '/calendar'}">Calendar</a></li>
-          <li><a th:href="@{'/users/' + ${userId} + '/archives'}">Archives</a></li>
-          <li><a th:href="@{'/users/' + ${userId} + '/settings'}">Settings</a></li>
+          <th:block th:if="${#ctx.httpServletRequest.getRemoteUser()} != null">
+            <li ><a th:href="@{/exercises}">Exercises</a></li>
+            <li><a th:href="@{/statistics}">Statistics</a></li>
+            <li><a th:href="@{'/users/' + ${userId} + '/calendar'}">Calendar</a></li>
+            <li><a th:href="@{'/users/' + ${userId} + '/archives'}">Archives</a></li>
+            <li><a th:href="@{'/users/' + ${userId} + '/settings'}">Settings</a></li>
+          </th:block>
         </ul>
 
-        <form class="navbar-form navbar-right" th:action="@{/auth/logout}" method="post">
-          <input type="submit" value="ログアウト" class="btn btn-default"/>
-        </form>
+        <th:block th:if="${#ctx.httpServletRequest.getRemoteUser()} != null">
+          <form class="navbar-form navbar-right" th:action="@{/auth/logout}" method="post"
+            th:if="${#ctx.httpServletRequest.getRemoteUser()} != null">
+            <input type="submit" value="ログアウト" class="btn btn-default"/>
+          </form>
 
-        <form class="navbar-form navbar-right" th:action="@{/auth/login}" method="get">
-          <input type="submit" value="ログイン" class="btn btn-default"/>
-        </form>
+          <p class="navbar-text navbar-right">ようこそ<a th:href="@{'/users/' + ${userId}}"
+            class="navbar-link"><th:block th:text="${#ctx.httpServletRequest.getRemoteUser()}">ユーザ名</th:block>
+            </a>さん</p>
+        </th:block>
 
-        <p class="navbar-text navbar-right"><a th:href="@{/users/new}" class="navbar-link">登録
-          </a></p>
-        <p class="navbar-text navbar-right">ようこそ<a th:href="@{'/users/' + ${userId}}" class="navbar-link">ユーザ名
-          </a>さん</p>
+        <th:block th:if="${#ctx.httpServletRequest.getRemoteUser()} == null">
+          <form class="navbar-form navbar-right" th:action="@{/auth/login}" method="get">
+            <input type="submit" value="ログイン" class="btn btn-default"/>
+          </form>
+
+          <p class="navbar-text navbar-right"><a th:href="@{/users/new}" class="navbar-link">登録
+            </a></p>
+        </th:block>
       </div>
     </div>
   </nav>
