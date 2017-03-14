@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,10 @@ public class UsersController {
 
   @RequestMapping(value = "/new", method = RequestMethod.POST)
   public String register(@Valid RegisterForm registerForm, BindingResult bindingResult) {
+    if (isUsedUserId(registerForm.getUserId())) {
+      bindingResult.addError(new FieldError("registerForm", "userId", "他のユーザIDにしてください．"));
+    }
+
     if (bindingResult.hasErrors()) {
       return "user/users/registerForm";
     }
@@ -38,5 +43,9 @@ public class UsersController {
     userRepository.save(new User(registerForm.getName(), registerForm.getUserId(), registerForm.getPassword()));
     
     return "redirect:/";
+  }
+
+  private Boolean isUsedUserId(String userId) {
+    return (userRepository.findByUserId(userId) != null);
   }
 }
