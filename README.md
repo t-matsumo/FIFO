@@ -4,6 +4,12 @@
 - JDK 1.8 or later
 - MySQL 5
 
+# How To Create Database
+When you connected mysql, run next command.
+```
+create database fifo_dev;
+```
+
 # How To Build
 In projects root directory.
 ```
