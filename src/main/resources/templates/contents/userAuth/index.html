@@ -1,6 +1,6 @@
 <th:block layout:decorator="common/layout" layout:fragment="content">
   <div th:if="${param.error}">
-    <span class="label label-warning">ユーザ名またはパスワードが間違っています．</span>
+    <span class="label label-warning">ユーザIDまたはパスワードが間違っています．</span>
   </div>
 
   <div th:if="${param.logout}">
@@ -8,7 +8,7 @@
   </div>
 
   <form th:action="@{/auth/login}" method="post">
-    <div><label> ユーザ名 : <input type="text" name="username"/> </label></div>
+    <div><label> ユーザID : <input type="text" name="username"/> </label></div>
     <div><label> パスワード: <input type="password" name="password"/> </label></div>
     <div><input type="submit" value="ログイン"/></div>
   </form>
