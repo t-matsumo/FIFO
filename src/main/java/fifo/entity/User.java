@@ -1,17 +1,20 @@
 package fifo.entity;
 
 import java.io.Serializable;
+
 import java.sql.Timestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User implements Serializable {
+  @Transient
   private static final long serialVersionUID = 1L;
 
   @Id
@@ -22,8 +25,6 @@ public class User implements Serializable {
   private String userId;
   private String encodedPassword;
   private Timestamp timestamp;
-
-  protected User() {}
 
   public User(String name, String userId, String password) {
     this.name = name;
