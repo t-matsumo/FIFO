@@ -6,10 +6,16 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import fifo.service.UserService;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+  @Autowired
+  private UserService userService;
+
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
@@ -32,5 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     auth
       .inMemoryAuthentication()
         .withUser("user").password("password").roles("USER");
+
+    auth.userDetailsService(userService)
+        .passwordEncoder(new BCryptPasswordEncoder(4));
   }
 }
