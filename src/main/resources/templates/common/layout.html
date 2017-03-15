@@ -1,10 +1,27 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <th:block th:replace="common/header :: head-info" />
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">FIFO</title>
+
+    <link href="/rin/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 
   <body class="no-thank-yu">
-    <th:block th:replace="common/header :: navbar" />
+    <header>
+      <th:block th:replace="common/header :: navbar" />
+    </header>
+
     <th:block layout:fragment="content" />
+    
     <th:block th:replace="common/footer :: scripts-declaration" />
   </body>
 </html>
