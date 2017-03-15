@@ -40,7 +40,7 @@ public class UsersController {
       return "user/users/registerForm";
     }
     
-    userRepository.save(new User(registerForm.getName(), registerForm.getUserId(), registerForm.getPassword()));
+    userRepository.save(new User(registerForm));
     
     return "redirect:/";
   }
