@@ -1,4 +1,11 @@
-<th:block layout:decorator="common/layout" layout:fragment="content">
-  <h1>タイトル</h1>
-  <p>内容</p>
+<th:block layout:decorator="common/layout">
+  <head>
+    <title>home</title>
+    <link href="/css/root/index.css" rel="stylesheet" />
+  </head>
+
+  <div class="root-background" layout:fragment="content">
+    <h1>なにか</h1>
+    <p>なにしよう...</p>
+  </div>
 </th:block>
