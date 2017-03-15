@@ -20,6 +20,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import fifo.form.RegisterForm;
+
 @Entity
 public class User implements Serializable, UserDetails {
   @Transient
@@ -41,7 +43,7 @@ public class User implements Serializable, UserDetails {
   private String encodedPassword;
 
   @Column(nullable = false)
-  private Timestamp timestamp;
+  private Timestamp createdAt;
 
   @Column(nullable = false)
   @Enumerated(EnumType.STRING)
@@ -49,14 +51,14 @@ public class User implements Serializable, UserDetails {
 
   public User() {}
 
-  public User(String name, String userId, String password) {
-    this.name = name;
-    this.userId = userId;
+  public User(RegisterForm registerForm) {
+    this.name = registerForm.getName();
+    this.userId = registerForm.getUserId();
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
-    this.encodedPassword = encoder.encode(password);
+    this.encodedPassword = encoder.encode(registerForm.getPassword());
 
-    this.timestamp = new Timestamp(System.currentTimeMillis());
+    this.createdAt = new Timestamp(System.currentTimeMillis());
     this.authority = Authority.ROLE_USER;
   }
 
@@ -100,7 +102,7 @@ public class User implements Serializable, UserDetails {
   @Override
   public String toString() {
     return String.format(
-      "User[id=%d, name='%s', userId='%s', passwordHash='%s', timestamp='$s']",
-      id, name, userId, encodedPassword, timestamp);
+      "User[id=%d, name='%s', userId='%s', passwordHash='%s', createdAt='$s']",
+      id, name, userId, encodedPassword, createdAt);
   }
 }
