@@ -1,0 +1,8 @@
+<th:block layout:decorator="common/layout" layout:fragment="content">
+  <h1 th:text="${'問題' + id + 'の答え'}">答え合わせ</h1>
+  <p>
+    回答の正誤と問題の解答を書く
+  </p>
+
+  <div><a th:href="${'/exercises/english/' + nextId}">次の問題</a></div>
+</th:block>
