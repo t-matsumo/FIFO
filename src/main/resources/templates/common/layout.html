@@ -21,7 +21,9 @@
       <th:block th:replace="common/header :: navbar" />
     </header>
 
-    <th:block layout:fragment="content" />
+    <div class="container-fluid">
+      <th:block layout:fragment="content" />
+    </div>
     
     <th:block th:replace="common/footer :: scripts-declaration" />
   </body>
