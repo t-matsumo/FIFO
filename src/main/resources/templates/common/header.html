@@ -8,18 +8,36 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+
         <a class="navbar-brand" th:href="@{/}">FIFO</a>
       </div>
       
       <div class="collapse navbar-collapse" id="navbarEexample">
         <ul class="nav navbar-nav">
-          <li class="active"><a th:href="@{/}">Home</a></li>
-          <th:block th:if="${#ctx.httpServletRequest.getRemoteUser()} != null">
-            <li ><a th:href="@{/exercises}">Exercises</a></li>
-            <li><a th:href="@{/statistics}">Statistics</a></li>
-            <li><a th:href="@{'/users/' + ${userId} + '/calendar'}">Calendar</a></li>
-            <li><a th:href="@{'/users/' + ${userId} + '/archives'}">Archives</a></li>
-            <li><a th:href="@{'/users/' + ${userId} + '/settings'}">Settings</a></li>
+          <li th:class="${@viewHelper.getNavBarItemStatus('/')}">
+            <a th:href="@{/}">Home</a>
+          </li>
+
+          <th:block th:if="${@viewHelper.isAuthenticated()}">
+            <li th:class="${@viewHelper.getNavBarItemStatus('/exercises')}">
+              <a th:href="@{/exercises}">Exercises</a>
+            </li>
+
+            <li th:class="${@viewHelper.getNavBarItemStatus('/statistics')}">
+              <a th:href="@{/statistics}">Statistics</a>
+            </li>
+
+            <li th:class="${@viewHelper.getNavBarItemStatus('/users/' + userId + '/calendar')}">
+              <a th:href="@{'/users/' + ${userId} + '/calendar'}">Calendar</a>
+            </li>
+
+            <li th:class="${@viewHelper.getNavBarItemStatus('/users/' + userId + '/archives')}">
+              <a th:href="@{'/users/' + ${userId} + '/archives'}">Archives</a>
+            </li>
+
+            <li th:class="${@viewHelper.getNavBarItemStatus('/users/' + userId + '/settings')}">
+              <a th:href="@{'/users/' + ${userId} + '/settings'}">Settings</a>
+            </li>
           </th:block>
         </ul>
 
