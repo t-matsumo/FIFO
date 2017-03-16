@@ -1,0 +1,9 @@
+<th:block layout:decorator="common/layout" layout:fragment="content">
+  <h1 th:text="${'問題' + id}">問題</h1>
+  <p>問題文</p>
+
+  <form th:action="${'/exercises/english/' + id}" method="post">
+    <p>ここに選択肢を書く</p>
+    <input type="submit" value="回答する" />
+  </form>
+</th:block>
