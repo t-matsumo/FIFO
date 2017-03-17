@@ -1,4 +1,4 @@
-package fifo.controller.user;
+package fifo.controller.contents;
 
 import javax.validation.Valid;
 
@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import fifo.form.RegisterForm;
 import fifo.entity.User;
@@ -20,14 +19,14 @@ public class UsersController {
   @Autowired
   UserRepository userRepository;
 
-  @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-  public String index(@PathVariable("userId") String userId) {
-    return "user/users/index";
+  @RequestMapping(value = "/profile", method = RequestMethod.GET)
+  public String profile() {
+    return "contents/users/profile";
   }
 
   @RequestMapping(value = "/new", method = RequestMethod.GET)
   public String showRegisterForm(RegisterForm registerForm) {
-    return "user/users/registerForm";
+    return "contents/users/registerForm";
   }
 
   @RequestMapping(value = "/new", method = RequestMethod.POST)
@@ -37,7 +36,7 @@ public class UsersController {
     }
 
     if (bindingResult.hasErrors()) {
-      return "user/users/registerForm";
+      return "contents/users/registerForm";
     }
     
     userRepository.save(new User(registerForm));

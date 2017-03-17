@@ -27,16 +27,16 @@
               <a th:href="@{/statistics}">Statistics</a>
             </li>
 
-            <li th:class="${@viewHelper.getNavBarItemStatus('/users/' + userId + '/calendar')}">
-              <a th:href="@{'/users/' + ${userId} + '/calendar'}">Calendar</a>
+            <li th:class="${@viewHelper.getNavBarItemStatus('/calendar')}">
+              <a th:href="@{'/calendar'}">Calendar</a>
             </li>
 
-            <li th:class="${@viewHelper.getNavBarItemStatus('/users/' + userId + '/archives')}">
-              <a th:href="@{'/users/' + ${userId} + '/archives'}">Archives</a>
+            <li th:class="${@viewHelper.getNavBarItemStatus('/archives')}">
+              <a th:href="@{'/archives'}">Archives</a>
             </li>
 
-            <li th:class="${@viewHelper.getNavBarItemStatus('/users/' + userId + '/settings')}">
-              <a th:href="@{'/users/' + ${userId} + '/settings'}">Settings</a>
+            <li th:class="${@viewHelper.getNavBarItemStatus('/settings')}">
+              <a th:href="@{'/settings'}">Settings</a>
             </li>
           </th:block>
         </ul>
@@ -47,7 +47,7 @@
             <input type="submit" value="ログアウト" class="btn btn-default"/>
           </form>
 
-          <p class="navbar-text navbar-right">ようこそ<a th:href="@{'/users/' + ${userId}}"
+          <p class="navbar-text navbar-right">ようこそ<a th:href="@{'/users/profile'}"
             class="navbar-link"><th:block th:text="${#ctx.httpServletRequest.getRemoteUser()}">ユーザ名</th:block>
             </a>さん</p>
         </th:block>
