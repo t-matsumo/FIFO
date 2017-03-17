@@ -5,15 +5,12 @@ import javax.validation.constraints.NotNull;
 
 public class RegisterForm {
   @NotNull
-  @Min(1)
   private String name;
 
   @NotNull
-  @Min(1)
   private String userId;
 
   @NotNull
-  @Min(8)
   private String password;
 
   public String getName() {
