@@ -55,7 +55,7 @@ public class User implements Serializable, UserDetails {
     this.name = registerForm.getName();
     this.userId = registerForm.getUserId();
 
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     this.encodedPassword = encoder.encode(registerForm.getPassword());
 
     this.createdAt = new Timestamp(System.currentTimeMillis());

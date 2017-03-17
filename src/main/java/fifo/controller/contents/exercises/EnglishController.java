@@ -1,33 +1,51 @@
 package fifo.controller.contents.exercises;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import fifo.entity.ExerciseEnglish;
+import fifo.repository.ExerciseEnglishRepository;
+
 @Controller
 @RequestMapping(value = "/exercises/english")
 public class EnglishController {
-  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-  public String getExercise(@PathVariable("id") String id, Model model) {
-    // 問題をデータベースから取ってくる
-    model.addAttribute("id", id);
-    
-    // 問題文と解答フォームを返す
+  @Autowired
+  ExerciseEnglishRepository exerciseEnglishRepository;
 
-    // CAUTION:最後の問題のときは結果表示画面を返す！！！（永遠に終わらせないなら良いけどwww）
+  @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+  public String exercise(@PathVariable("id") Long id, Model model) {
+    // データベースに問題を入れてから有効化
+    // ExerciseEnglish exercise = exerciseEnglishRepository.findOne(id);
+
+    model.addAttribute("id", id);
+    // model.addAttribute("exercise", exercise);
 
     return "contents/exercises/exercise";
   }
 
   @RequestMapping(value = "/{id}", method = RequestMethod.POST)
-  public String getAnswer(@PathVariable("id") String id, Model model) {
-    // 答えをデータベースから取ってきて比較
-    model.addAttribute("id", id);
-    model.addAttribute("nextId", Long.parseLong(id) + 1L);
+  public String answer(@PathVariable("id") Long id, Model model) {
+    // データベースに問題を入れてから有効化
+    // ExerciseEnglish exercise = exerciseEnglishRepository.findOne(id);
+
+    // TODO:回答との比較処理を書く
+    String result = "正解 or 不正解";
+
+    model.addAttribute("id"      , id);
+    // model.addAttribute("exercise", exercise);
+    model.addAttribute("result"  , result);
     
     // 答え合わせと次へボタンを返す
     return "contents/exercises/answer";
+  }
+
+  @RequestMapping(value = "/result", method = RequestMethod.GET)
+  public String result() {
+    // データベースから結果を取ってきて表示
+    return "contents/exercises/result";
   }
 }
