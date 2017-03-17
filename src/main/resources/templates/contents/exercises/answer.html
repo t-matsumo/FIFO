@@ -5,8 +5,8 @@
   </p>
 
   <div>
-    <a th:href="${'/exercises/english/' + nextId}" th:if="${nextId} le 10">次の問題</a>
+    <a th:href="${'/exercises/english/' + (id + 1L)}" th:if="${id} lt 10">次の問題</a>
 
-    <a th:href="${'/exercises/english/result'}" th:if="${nextId} gt 10">演習終了</a>
+    <a th:href="${'/exercises/english/result'}" th:if="${id} ge 10">演習終了</a>
   </div>
 </th:block>
