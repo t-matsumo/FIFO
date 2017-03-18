@@ -1,3 +1,41 @@
-<th:block layout:decorator="common/layout" layout:fragment="content">
-calendar
+<th:block layout:decorator="common/layout">
+  <head>
+    <link rel="stylesheet" href="/bootstrap-calendar/css/calendar.min.css" />
+  </head>
+
+  <th:block layout:fragment="content">
+    <div class="container">
+      <div class="page-header">
+        <div class="pull-right form-inline">
+          <div class="btn-group">
+            <button class="btn btn-primary" data-calendar-nav="prev">&lt;&lt; Prev</button>
+            <button class="btn" data-calendar-nav="today">Today</button>
+            <button class="btn btn-primary" data-calendar-nav="next">Next &gt;&gt;</button>
+          </div>
+          
+          <div class="btn-group">
+            <button class="btn btn-warning" data-calendar-view="year">Year</button>
+            <button class="btn btn-warning active" data-calendar-view="month">Month</button>
+            <button class="btn btn-warning" data-calendar-view="week">Week</button>
+            <button class="btn btn-warning" data-calendar-view="day">Day</button>
+          </div>
+        </div>
+
+        <h3></h3> <!-- ここに○年○月などが表示される -->
+      </div>
+
+      <div id="calendar"></div>
+    </div>
+  </th:block>
+
+  <th:block layout:fragment="unique-scripts">
+    <script src="/bootstrap-calendar/components/underscore/underscore-min.js"></script>
+    <script src="/bootstrap-calendar/js/language/ja-JP.js"></script>
+    <script src="/bootstrap-calendar/js/calendar.min.js"></script>
+    <script src="/bootstrap-calendar/js/app.js"></script>
+    <script type="text/javascript">
+      var calendar = $("#calendar").calendar({
+      });
+    </script>
+  </th:block>
 </th:block>
