@@ -23,20 +23,8 @@
               <a th:href="@{/exercises}">Exercises</a>
             </li>
 
-            <li th:class="${@viewHelper.getNavBarItemStatus('/statistics')}">
-              <a th:href="@{/statistics}">Statistics</a>
-            </li>
-
             <li th:class="${@viewHelper.getNavBarItemStatus('/calendar')}">
               <a th:href="@{'/calendar'}">Calendar</a>
-            </li>
-
-            <li th:class="${@viewHelper.getNavBarItemStatus('/archives')}">
-              <a th:href="@{'/archives'}">Archives</a>
-            </li>
-
-            <li th:class="${@viewHelper.getNavBarItemStatus('/settings')}">
-              <a th:href="@{'/settings'}">Settings</a>
             </li>
           </th:block>
         </ul>
