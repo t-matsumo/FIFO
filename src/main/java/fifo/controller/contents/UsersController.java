@@ -55,8 +55,8 @@ public class UsersController {
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
   public String edit(Principal principal, @Valid EditForm editForm, BindingResult bindingResult) {
-    Authentication authentication = (Authentication) principal;
-    User user = (User) authentication.getPrincipal();
+    // Authentication authentication = (Authentication) principal;
+    // User user = (User) authentication.getPrincipal(); // NOTE:何故かエラー？？？
 
     // if (editForm.hasDifferentUserId(user) && editForm.hasInvalidUserId()) {
     //   bindingResult.addError(new FieldError("editForm", "userId", "他のユーザIDにしてください．"));
