@@ -19,11 +19,6 @@ public class UsersController {
   @Autowired
   UserRepository userRepository;
 
-  @RequestMapping(value = "/profile", method = RequestMethod.GET)
-  public String profile() {
-    return "contents/users/profile";
-  }
-
   @RequestMapping(value = "/new", method = RequestMethod.GET)
   public String showRegisterForm(RegisterForm registerForm) {
     return "contents/users/registerForm";
@@ -46,5 +41,15 @@ public class UsersController {
 
   private Boolean isUsedUserId(String userId) {
     return (userRepository.findByUserId(userId) != null);
+  }
+
+  @RequestMapping(value = "/profile", method = RequestMethod.GET)
+  public String profile() {
+    return "contents/users/profile";
+  }
+
+  @RequestMapping(value = "/edit", method = RequestMethod.GET)
+  public String edit() {
+    return "contents/users/edit";
   }
 }

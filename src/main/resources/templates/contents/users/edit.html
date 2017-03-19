@@ -1,0 +1,19 @@
+<th:block layout:decorator="common/layout" layout:fragment="content">
+  <h1>登録情報・パスワード変更</h1>
+  <form th:action="@{/users/edit}" method="post">
+    <div><label> ユーザ名 : <input type="text" name="name" th:field="*{name}"/> </label></div>
+    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+
+    <div><label> ユーザID : <input type="text" name="userId" th:field="*{userId}"/> </label></div>
+    <div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}">UserID Error</div>
+
+    <div><label> 現在のパスワード: <input type="text" name="oldpassword" th:field="*{oldpassword}"/> </label></div>
+    <div th:if="${#fields.hasErrors('oldpassword')}" th:errors="*{oldpassword}">UserID Error</div>
+
+    <div><label>新しいパスワードは変更時のみ記入</label><div>
+    <div><label> 新しいパスワード: <input type="text" name="newpassword" th:field="*{newpassword}"/> </label></div>
+    <div th:if="${#fields.hasErrors('newpassword')}" th:errors="*{newpassword}">UserID Error</div>
+
+    <div><input type="submit" value="登録情報・パスワード変更" /></div>
+  </form>
+</th:block>
