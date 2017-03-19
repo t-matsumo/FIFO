@@ -1,6 +1,5 @@
 package fifo.form;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public class RegisterForm {
