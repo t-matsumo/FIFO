@@ -62,6 +62,11 @@ public class User implements Serializable, UserDetails {
     this.authority = Authority.ROLE_USER;
   }
 
+  @Transient
+  public Boolean hasDifferentUserId(String userId) {
+    return (this.userId != userId);
+  }
+
   @Override
   public String getUsername() {
     return this.name;
