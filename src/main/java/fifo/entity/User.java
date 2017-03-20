@@ -20,8 +20,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import fifo.form.RegisterForm;
-
 @Entity
 public class User implements Serializable, UserDetails {
   @Transient
@@ -51,12 +49,12 @@ public class User implements Serializable, UserDetails {
 
   public User() {}
 
-  public User(RegisterForm registerForm) {
-    this.name = registerForm.getName();
-    this.userId = registerForm.getUserId();
+  public User(String name, String userId, String password) {
+    this.name = name;
+    this.userId = userId;
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    this.encodedPassword = encoder.encode(registerForm.getPassword());
+    this.encodedPassword = encoder.encode(password);
 
     this.createdAt = new Timestamp(System.currentTimeMillis());
     this.authority = Authority.ROLE_USER;
@@ -65,6 +63,17 @@ public class User implements Serializable, UserDetails {
   @Transient
   public Boolean hasDifferentUserId(String userId) {
     return (this.userId != userId);
+  }
+
+  public void update(User user) {
+    this.name = user.name;
+    this.userId = user.userId;
+
+    this.encodedPassword = user.encodedPassword;
+  }
+
+  public String getUserId() {
+    return this.userId;
   }
 
   @Override

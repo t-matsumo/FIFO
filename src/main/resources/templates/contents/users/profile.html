@@ -10,7 +10,7 @@
         </h3>
       </div>
       <div id="collapse_username" class="panel-collapse collapse in">
-        <div class="panel-body">
+        <div class="panel-body" th:text="${loginUser.getUsername()}">
           ユーザ
         </div>
       </div>
@@ -23,8 +23,8 @@
           </a>
         </h3>
       </div>
-      <div id="collapse_userid" class="panel-collapse collapse">
-        <div class="panel-body">
+      <div id="collapse_userid" class="panel-collapse collapse in">
+        <div class="panel-body" th:text="${loginUser.getUserId()}">
           ID
         </div>
       </div>

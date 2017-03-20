@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,13 +39,18 @@ public class UsersController {
       return "contents/users/registerForm";
     }
     
-    userRepository.save(new User(registerForm));
+    userRepository.save(registerForm.createUser());
     
     return "redirect:/";
   }
 
   @RequestMapping(value = "/profile", method = RequestMethod.GET)
-  public String profile() {
+  public String profile(Principal principal, Model model) {
+    Authentication auth = (Authentication)principal;
+    User loginUser = (User)auth.getPrincipal();
+
+    model.addAttribute("loginUser", loginUser);
+
     return "contents/users/profile";
   }
 
@@ -55,18 +61,19 @@ public class UsersController {
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
   public String edit(Principal principal, @Valid EditForm editForm, BindingResult bindingResult) {
-    // Authentication authentication = (Authentication) principal;
-    // User user = (User) authentication.getPrincipal(); // NOTE:何故かエラー？？？
+    Authentication auth = (Authentication)principal;
+    User loginUser = (User)auth.getPrincipal();
 
-    // if (editForm.hasDifferentUserId(user) && editForm.hasInvalidUserId()) {
-    //   bindingResult.addError(new FieldError("editForm", "userId", "他のユーザIDにしてください．"));
-    // }
+    if (editForm.hasDifferentUserId(loginUser) && isUsedUserId(editForm.getUserId())) {
+      bindingResult.addError(new FieldError("editForm", "userId", "他のユーザIDにしてください．"));
+    }
 
     if (bindingResult.hasErrors()) {
       return "contents/users/edit";
     }
     
-    // userRepository.save(new User(editForm));
+    loginUser.update(editForm.createUser());
+    userRepository.save(loginUser);
 
     return "redirect:/users/profile";
   }
