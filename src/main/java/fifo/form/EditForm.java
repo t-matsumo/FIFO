@@ -2,15 +2,9 @@ package fifo.form;
 
 import javax.validation.constraints.NotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import fifo.entity.User;
-import fifo.repository.UserRepository;
 
 public class EditForm {
-  @Autowired
-  UserRepository userRepository;
-
   @NotNull
   private String name;
 
@@ -26,9 +20,8 @@ public class EditForm {
     return user.hasDifferentUserId(userId);
   }
 
-  public Boolean hasInvalidUserId() {
-    // ユーザIDが使われている→無効なユーザID
-    return (userRepository.findByUserId(userId) != null);
+  public User createUser() {
+    return new User(name, userId, newpassword);
   }
 
   public String getName() {
