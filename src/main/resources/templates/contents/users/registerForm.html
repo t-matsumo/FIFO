@@ -9,6 +9,6 @@
     <div><label> パスワード: <input type="text" name="password" th:field="*{password}" /> </label></div>
     <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">UserID Error</div>
 
-    <div><input type="submit" value="登録" /></div>
+    <div><input type="submit" value="登録" class="btn btn-default" /></div>
   </form>
 </th:block>
