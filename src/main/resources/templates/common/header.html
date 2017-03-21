@@ -2,51 +2,62 @@
   <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+          data-target="#navbarEexample">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" th:href="@{/}">FIFO</a>
+        <a class="navbar-brand" href="/" th:href="@{/}">FIFO</a>
       </div>
       
       <div class="collapse navbar-collapse" id="navbarEexample">
         <ul class="nav navbar-nav">
           <li th:class="${@viewHelper.getNavBarItemStatus('/')}">
-            <a th:href="@{/}">Home</a>
+            <a href="/" th:href="@{/}">Home</a>
           </li>
 
           <th:block th:if="${@viewHelper.isAuthenticated()}">
             <li th:class="${@viewHelper.getNavBarItemStatus('/exercises')}">
-              <a th:href="@{/exercises}">Exercises</a>
+              <a href="/exercises" th:href="@{/exercises}">Exercises</a>
             </li>
 
             <li th:class="${@viewHelper.getNavBarItemStatus('/calendar')}">
-              <a th:href="@{'/calendar'}">Calendar</a>
+              <a href="/calendar" th:href="@{/calendar}">Calendar</a>
             </li>
           </th:block>
         </ul>
 
-        <th:block th:if="${#ctx.httpServletRequest.getRemoteUser()} != null">
-          <form class="navbar-form navbar-right" th:action="@{/auth/logout}" method="post"
-            th:if="${#ctx.httpServletRequest.getRemoteUser()} != null">
-            <input type="submit" value="ログアウト" class="btn btn-default"/>
+        <th:block th:if="${@viewHelper.isAuthenticated()}">
+          <form class="navbar-form navbar-right" action="/auth/logout"
+            th:action="@{/auth/logout}" method="post">
+            <input type="submit" value="ログアウト" class="btn btn-default" />
           </form>
 
-          <p class="navbar-text navbar-right">ようこそ<a th:href="@{'/users/profile'}"
-            class="navbar-link"><th:block th:text="${#ctx.httpServletRequest.getRemoteUser()}">ユーザ名</th:block>
-            </a>さん</p>
+          <p class="navbar-text navbar-right">
+            ようこそ
+            <a href="/users/profile" th:href="@{/users/profile}" class="navbar-link">
+              <th:block th:text="${@viewHelper.getUsername()}">
+                ユーザ名
+              </th:block>
+            </a>
+            さん
+          </p>
         </th:block>
 
-        <th:block th:if="${#ctx.httpServletRequest.getRemoteUser()} == null">
-          <form class="navbar-form navbar-right" th:action="@{/auth/login}" method="get">
-            <input type="submit" value="ログイン" class="btn btn-default"/>
+        <th:block th:if="${not @viewHelper.isAuthenticated()}">
+          <form class="navbar-form navbar-right" action="/auth/login" th:action="@{/auth/login}"
+            method="get">
+            <input type="submit" value="ログイン" class="btn btn-default" />
           </form>
 
-          <p class="navbar-text navbar-right"><a th:href="@{/users/new}" class="navbar-link">登録
-            </a></p>
+          <p class="navbar-text navbar-right">
+            <a href="/users/new" th:href="@{/users/new}" class="navbar-link">
+              登録
+            </a>
+          </p>
         </th:block>
       </div>
     </div>

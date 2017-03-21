@@ -16,7 +16,11 @@ public class ViewHelper {
     return "";
   }
 
+  public String getUsername() {
+    return httpServletRequest.getRemoteUser();
+  }
+  
   public Boolean isAuthenticated() {
-    return (httpServletRequest.getRemoteUser() != null);
+    return (getUsername() != null);
   }
 }

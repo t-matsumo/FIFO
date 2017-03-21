@@ -1,14 +1,27 @@
 <th:block layout:decorator="common/layout" layout:fragment="content">
+  <h1>ユーザ登録</h1>
+
   <form th:action="@{/users/new}" th:object="${registerForm}" method="post">
-    <div><label> ユーザ名 : <input type="text" name="name" th:field="*{name}"/> </label></div>
-    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    <div class="form-group">
+      <label for="username">ユーザ名</label>
+      <input type="text" name="name" th:field="*{name}" class="form-control" id="username" />
+      <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+    </div>
 
-    <div><label> ユーザID : <input type="text" name="userId" th:field="*{userId}"/> </label></div>
-    <div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}">UserID Error</div>
+    <div class="form-group">
+      <label for="user_id">ユーザID</label>
+      <input type="text" name="userId" th:field="*{userId}" class="form-control" id="user_id" />
+      <div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}">UserID Error</div>
+    </div>
 
-    <div><label> パスワード: <input type="text" name="password" th:field="*{password}"/> </label></div>
-    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">UserID Error</div>
+    <div class="form-group">
+      <label for="password">パスワード</label>
+      <input type="text" name="password" th:field="*{password}" class="form-control" id="password" />
+      <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">UserID Error</div>
+    </div>
 
-    <div><input type="submit" value="登録"/></div>
+    <div class="form-group">
+      <input type="submit" value="登録" class="btn btn-default" />
+    </div>
   </form>
 </th:block>
