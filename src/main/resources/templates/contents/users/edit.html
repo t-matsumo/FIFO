@@ -1,27 +1,34 @@
 <th:block layout:decorator="common/layout" layout:fragment="content">
   <h1>登録情報・パスワード変更</h1>
+
   <form th:action="@{/users/edit}" th:object="${editForm}" method="post">
-    <div>
-      <label>ユーザ名 : <input type="text" name="name" th:field="*{name}" /></label>
+    <div class="form-group">
+      <label for="username">ユーザ名</label>
+      <input type="text" name="name" th:field="*{name}" class="form-control" id="username" />
+      <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
     </div>
-    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
 
-    <div>
-      <label>ユーザID : <input type="text" name="userId" th:field="*{userId}" /></label>
+    <div class="form-group">
+      <label for="user_id">ユーザID</label>
+      <input type="text" name="userId" th:field="*{userId}" class="form-control" id="user_id" />
+      <div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}">UserID Error</div>
     </div>
-    <div th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}">UserID Error</div>
 
-    <div>
-      <label>現在のパスワード: <input type="text" name="oldpassword" th:field="*{oldpassword}" /></label>
+    <div class="form-group">
+      <label for="old_password">現在のパスワード</label>
+      <input type="text" name="oldpassword" th:field="*{oldpassword}" class="form-control" id="old_password" />
+      <div th:if="${#fields.hasErrors('oldpassword')}" th:errors="*{oldpassword}">UserID Error</div>
     </div>
-    <div th:if="${#fields.hasErrors('oldpassword')}" th:errors="*{oldpassword}">UserID Error</div>
 
     <div>新しいパスワードは変更時のみ記入</div>
-    <div>
-      <label>新しいパスワード: <input type="text" name="newpassword" th:field="*{newpassword}" /></label>
+    <div class="form-group">
+      <label for="new_password">新しいパスワード</label>
+      <input type="text" name="newpassword" th:field="*{newpassword}" class="form-control" id="new_password" />
+      <div th:if="${#fields.hasErrors('newpassword')}" th:errors="*{newpassword}">UserID Error</div>
     </div>
-    <div th:if="${#fields.hasErrors('newpassword')}" th:errors="*{newpassword}">UserID Error</div>
 
-    <div><input type="submit" value="登録情報・パスワード変更" class="btn btn-default" /></div>
+    <div class="form-group">
+      <input type="submit" value="登録情報・パスワード変更" class="btn btn-default" />
+    </div>
   </form>
 </th:block>

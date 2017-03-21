@@ -1,4 +1,6 @@
 <th:block layout:decorator="common/layout" layout:fragment="content">
+  <h1>ログイン</h1>
+
   <div th:if="${param.error}">
     <span class="label label-warning">ユーザIDまたはパスワードが間違っています．</span>
   </div>
@@ -8,8 +10,19 @@
   </div>
 
   <form th:action="@{/auth/login}" method="post">
-    <div><label> ユーザID : <input type="text" name="username" /> </label></div>
-    <div><label> パスワード: <input type="password" name="password" /> </label></div>
-    <div><input type="submit" value="ログイン" class="btn btn-default" /></div>
+    <div class="form-group">
+      <label for="user_id">ユーザID</label>
+      <!-- Spring Security に合わせるためname属性は username を使う-->
+      <input type="text" name="username" class="form-control" id="user_id" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">パスワード</label>
+      <input type="password" name="password" class="form-control" id="password" />
+    </div>
+
+    <div class="form-group">
+      <input type="submit" value="ログイン" class="btn btn-default" />
+    </div>
   </form>
 </th:block>
