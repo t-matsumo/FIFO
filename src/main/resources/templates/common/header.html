@@ -30,27 +30,27 @@
           </th:block>
         </ul>
 
-        <th:block th:if="${#ctx.httpServletRequest.getRemoteUser()} != null">
+        <th:block th:if="${@viewHelper.isAuthenticated()}">
           <form class="navbar-form navbar-right" action="/auth/logout"
             th:action="@{/auth/logout}" method="post">
-            <input type="submit" value="ログアウト" class="btn btn-default"/>
+            <input type="submit" value="ログアウト" class="btn btn-default" />
           </form>
 
           <p class="navbar-text navbar-right">
             ようこそ
             <a href="/users/profile" th:href="@{/users/profile}" class="navbar-link">
-              <th:block th:text="${#ctx.httpServletRequest.getRemoteUser()}">
-              ユーザ名
+              <th:block th:text="${@viewHelper.getUsername()}">
+                ユーザ名
               </th:block>
             </a>
             さん
           </p>
         </th:block>
 
-        <th:block th:if="${#ctx.httpServletRequest.getRemoteUser()} == null">
+        <th:block th:if="${not @viewHelper.isAuthenticated()}">
           <form class="navbar-form navbar-right" action="/auth/login" th:action="@{/auth/login}"
             method="get">
-            <input type="submit" value="ログイン" class="btn btn-default"/>
+            <input type="submit" value="ログイン" class="btn btn-default" />
           </form>
 
           <p class="navbar-text navbar-right">
