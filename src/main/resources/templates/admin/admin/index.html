@@ -1,17 +1,23 @@
-<th:block layout:decorator="admin/common/layout" layout:fragment="content">
-  <form action="#" method="post">
-    <div class="form-group">
-      <label for="quiestion">問題文</label>
-      <input type="text" name="quiestion" class="form-control" id="quiestion" />
-    </div>
+<th:block layout:decorator="admin/common/layout">
+  <th:block layout:fragment="header">
+    Add questions
+  </th:block>
 
-    <div class="form-group">
-      <label for="answer">回答</label>
-      <input type="text" name="answer" class="form-control" id="answer" />
-    </div>
+  <th:block layout:fragment="content">
+    <form action="#" method="post">
+      <div class="form-group">
+        <label for="quiestion">Question sentence</label>
+        <textarea name="quiestion" class="form-control" id="quiestion"></textarea>
+      </div>
 
-    <div class="form-group">
-      <input type="submit" value="問題登録" class="btn btn-default" />
-    </div>
-  </form>
+      <div class="form-group">
+        <label for="answer">Answer</label>
+        <input type="text" name="answer" class="form-control" id="answer" />
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Register" class="btn btn-default" />
+      </div>
+    </form>
+  </th:block>
 </th:block>
