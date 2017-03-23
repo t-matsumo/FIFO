@@ -10,22 +10,22 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand" href="/" th:href="@{/}">FIFO</a>
+        <a class="navbar-brand" href="/">FIFO</a>
       </div>
       
       <div class="collapse navbar-collapse" id="navbarEexample">
         <ul class="nav navbar-nav">
           <li th:class="${@viewHelper.getNavBarItemStatus('/')}">
-            <a href="/" th:href="@{/}">Home</a>
+            <a href="/">Home</a>
           </li>
 
           <th:block th:if="${@viewHelper.isAuthenticated()}">
             <li th:class="${@viewHelper.getNavBarItemStatus('/exercises')}">
-              <a href="/exercises" th:href="@{/exercises}">Exercises</a>
+              <a href="/exercises">Exercises</a>
             </li>
 
             <li th:class="${@viewHelper.getNavBarItemStatus('/calendar')}">
-              <a href="/calendar" th:href="@{/calendar}">Calendar</a>
+              <a href="/calendar">Calendar</a>
             </li>
           </th:block>
         </ul>
@@ -38,7 +38,7 @@
 
           <p class="navbar-text navbar-right">
             ようこそ
-            <a href="/users/profile" th:href="@{/users/profile}" class="navbar-link">
+            <a href="/users/profile" class="navbar-link">
               <th:block th:text="${@viewHelper.getUsername()}">
                 ユーザ名
               </th:block>
@@ -54,7 +54,7 @@
           </form>
 
           <p class="navbar-text navbar-right">
-            <a href="/users/new" th:href="@{/users/new}" class="navbar-link">
+            <a href="/users/new" class="navbar-link">
               登録
             </a>
           </p>

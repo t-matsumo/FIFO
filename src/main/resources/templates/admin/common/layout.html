@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">FIFO</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" />
+    <link rel="stylesheet" href="/webjars/adminlte/2.3.11/dist/css/AdminLTE.min.css" />
+    <link rel="stylesheet" href="/webjars/adminlte/2.3.11/dist/css/skins/skin-blue.min.css" />
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+      <th:block th:replace="admin/common/header :: header" />
+      <th:block th:replace="admin/common/sidebar :: sidebar" />
+
+      <div class="content-wrapper">
+        <section class="content-header">
+          <h1>
+            <th:block layout:fragment="header" />
+          </h1>
+        </section>
+
+        <section class="content">
+          <th:block layout:fragment="content" />
+        </section>
+      </div>
+      
+      <th:block th:replace="admin/common/footer :: scripts-declaration" />
+
+      <th:block layout:fragment="unique-scripts" />
+    </div>
+  </body>
+</html>
