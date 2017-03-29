@@ -5,6 +5,10 @@
   </head>
 
   <th:block layout:fragment="content">
+    <th:block th:if="${@viewHelper.isAuthenticated()}">
+      <p>あれまで残り１０ヶ月１０日１秒</p>
+    </th:block>
+
     <div class="row root-background">
       <div class="col-md-offset-1">
         <h1>勉強の手助けwww</h1>
