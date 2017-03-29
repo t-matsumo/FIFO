@@ -1,22 +1,20 @@
 package fifo.form;
 
 import javax.validation.constraints.NotNull;
-
-import fifo.entity.User;
+import javax.validation.constraints.Size;
 
 public class RegisterForm {
   @NotNull
+  @Size(min = 1)
   private String name;
 
   @NotNull
+  @Size(min = 1)
   private String userId;
 
   @NotNull
+  @Size(min = 4)
   private String password;
-
-  public User createUser() {
-    return new User(name, userId, password);
-  }
 
   public String getName() {
     return this.name;
