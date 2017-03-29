@@ -18,7 +18,6 @@ import javax.persistence.Transient;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User implements Serializable, UserDetails {
@@ -49,12 +48,10 @@ public class User implements Serializable, UserDetails {
 
   public User() {}
 
-  public User(String name, String userId, String password) {
-    this.name = name;
-    this.userId = userId;
-
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    this.encodedPassword = encoder.encode(password);
+  public User(String name, String userId, String encodedPassword) {
+    this.name            = name;
+    this.userId          = userId;
+    this.encodedPassword = encodedPassword;
 
     this.createdAt = new Timestamp(System.currentTimeMillis());
     this.authority = Authority.ROLE_USER;
@@ -65,11 +62,10 @@ public class User implements Serializable, UserDetails {
     return (this.userId != userId);
   }
 
-  public void update(User user) {
-    this.name = user.name;
-    this.userId = user.userId;
-
-    this.encodedPassword = user.encodedPassword;
+  public void update(String name, String userId, String encodedPassword) {
+    this.name            = name;
+    this.userId          = userId;
+    this.encodedPassword = encodedPassword;
   }
 
   public String getUserId() {

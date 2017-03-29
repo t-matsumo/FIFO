@@ -1,27 +1,28 @@
 package fifo.form;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import fifo.entity.User;
 
 public class EditForm {
   @NotNull
+  @Size(min = 1)
   private String name;
 
   @NotNull
+  @Size(min = 1)
   private String userId;
 
   @NotNull
+  @Size(min = 4)
   private String oldpassword;
 
+  @Size(min = 4)
   private String newpassword;
 
   public Boolean hasDifferentUserId(User user) {
     return user.hasDifferentUserId(userId);
-  }
-
-  public User createUser() {
-    return new User(name, userId, newpassword);
   }
 
   public String getName() {

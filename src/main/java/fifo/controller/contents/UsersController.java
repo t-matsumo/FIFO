@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,9 @@ public class UsersController {
   @Autowired
   UserRepository userRepository;
 
+  @Autowired
+  private PasswordEncoder passwordEncoder;
+
   @RequestMapping(value = "/new", method = RequestMethod.GET)
   public String showRegisterForm(RegisterForm registerForm) {
     return "contents/users/registerForm";
@@ -38,8 +42,11 @@ public class UsersController {
     if (bindingResult.hasErrors()) {
       return "contents/users/registerForm";
     }
-    
-    userRepository.save(registerForm.createUser());
+
+    String name            = registerForm.getName();
+    String userId          = registerForm.getUserId();
+    String encodedPassword = passwordEncoder.encode(registerForm.getPassword());
+    userRepository.save(new User(name, userId, encodedPassword));
     
     return "redirect:/";
   }
@@ -72,7 +79,10 @@ public class UsersController {
       return "contents/users/edit";
     }
     
-    loginUser.update(editForm.createUser());
+    String name            = editForm.getName();
+    String userId          = editForm.getUserId();
+    String encodedPassword = passwordEncoder.encode(editForm.getNewpassword());
+    loginUser.update(name, userId, encodedPassword);
     userRepository.save(loginUser);
 
     return "redirect:/users/profile";
