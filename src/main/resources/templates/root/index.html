@@ -5,6 +5,10 @@
   </head>
 
   <th:block layout:fragment="content">
+    <th:block th:if="${@viewHelper.isAuthenticated()}">
+      <div id="deadline"></div>
+    </th:block>
+
     <div class="row root-background">
       <div class="col-md-offset-1">
         <h1>勉強の手助けwww</h1>
@@ -54,5 +58,16 @@
         </div>
       </div>
     </div>
+  </th:block>
+
+  <th:block layout:fragment="unique-scripts">
+    <th:block th:if="${@viewHelper.isAuthenticated()}">
+      <script src="/js/root/Deadline.js"></script>
+      <script src="/js/root/DeadlineTimer.js"></script>
+      <script th:inline="javascript">
+        var deadlinePOJOs = /*[[${deadlines}]]*/ null;
+        var deadlineTimer = new DeadlineTimer(deadlinePOJOs);
+      </script>
+    </th:block>
   </th:block>
 </th:block>

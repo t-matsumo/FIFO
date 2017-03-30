@@ -27,6 +27,11 @@
             <li th:class="${@viewHelper.getNavBarItemStatus('/calendar')}">
               <a href="/calendar">Calendar</a>
             </li>
+            
+            <li th:class="${@viewHelper.getNavBarItemStatus('/deadlines')}">
+              <a href="/deadlines/new">Deadlines Settings</a>
+            </li>
+
           </th:block>
         </ul>
 
