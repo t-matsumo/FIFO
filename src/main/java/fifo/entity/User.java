@@ -2,16 +2,20 @@ package fifo.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.ArrayList;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.EnumType;
 import javax.persistence.Transient;
 
@@ -19,10 +23,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import fifo.entity.Deadline;
+
 @Entity
 public class User implements Serializable, UserDetails {
   @Transient
   private static final long serialVersionUID = 1L;
+
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @OrderBy("year ASC, month ASC, day ASC")
+  private List<Deadline> deadlines; 
 
   public enum Authority {ROLE_USER, ROLE_ADMIN};
 
@@ -66,6 +76,15 @@ public class User implements Serializable, UserDetails {
     this.name            = name;
     this.userId          = userId;
     this.encodedPassword = encodedPassword;
+  }
+
+  public void addDeadline(Deadline deadline) {
+    deadlines.add(deadline);
+  }
+
+  @Transient
+  public List<Deadline> getDeadlines() {
+    return this.deadlines;
   }
 
   public String getUserId() {
