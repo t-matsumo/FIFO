@@ -44,6 +44,14 @@ public class Deadline implements Serializable {
     this.createdAt = new Timestamp(System.currentTimeMillis());
   }
 
+  public String tell() {
+    return year + "年" + month + "月" + day + "日";
+  }
+
+  public Long getId() {
+    return this.id;
+  }
+
   public String getTask() {
     return this.task;
   }

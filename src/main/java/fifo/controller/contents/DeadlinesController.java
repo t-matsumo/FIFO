@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,16 @@ import fifo.repository.UserRepository;
 class DeadlinesController {
   @Autowired
   private UserRepository userRepository;
+
+  @RequestMapping(method = RequestMethod.GET)
+  public String index(Principal principal, Model model) {
+    Authentication auth = (Authentication)principal;
+    User loginUser = (User)auth.getPrincipal();
+
+    model.addAttribute("deadlines", loginUser.getDeadlines());
+
+    return "contents/deadlines/index";
+  }
 
   @RequestMapping(value = "/new", method = RequestMethod.GET)
   public String showForm(DeadlineForm deadlineForm) {
