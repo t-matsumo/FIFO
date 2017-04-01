@@ -1,6 +1,7 @@
 package fifo.controller.contents;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -9,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,6 +33,20 @@ class DeadlinesController {
     model.addAttribute("deadlines", loginUser.getDeadlines());
 
     return "contents/deadlines/index";
+  }
+
+  @RequestMapping(value = "/{index}", method = RequestMethod.GET)
+  public String detail(Principal principal, @PathVariable("index") int index, Model model) {
+    Authentication auth = (Authentication)principal;
+    User loginUser = (User)auth.getPrincipal();
+
+    List<Deadline> deadlines = loginUser.getDeadlines();
+    Deadline deadline = deadlines.get(index);
+
+    model.addAttribute("deadline", deadline);
+    model.addAttribute("index"   , index);
+
+    return "/contents/deadlines/detail";
   }
 
   @RequestMapping(value = "/new", method = RequestMethod.GET)

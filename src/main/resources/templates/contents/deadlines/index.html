@@ -5,7 +5,7 @@
     <div class="panel panel-default" th:each="deadline : ${deadlines}">
       <div class="panel-heading">
         <h3 class="panel-title">
-          <a th:href="@{'/deadlines/' + ${deadline.getId()}}" th:text="${deadline.getTask()}">
+          <a th:href="@{'/deadlines/' + ${deadlineStat.index}}" th:text="${deadline.getTask()}">
             タスク名
           </a>
         </h3>
