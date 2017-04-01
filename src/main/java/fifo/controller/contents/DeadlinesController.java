@@ -49,6 +49,45 @@ class DeadlinesController {
     return "/contents/deadlines/detail";
   }
 
+  @RequestMapping(value = "/{index}/edit", method = RequestMethod.GET)
+  public String editForm(Principal principal, @PathVariable("index") int index, Model model) {
+    Authentication auth = (Authentication)principal;
+    User loginUser = (User)auth.getPrincipal();
+
+    List<Deadline> deadlines = loginUser.getDeadlines();
+    Deadline deadline = deadlines.get(index);
+
+    DeadlineForm deadlineForm = deadline.createDeadlineForm();
+
+    model.addAttribute("deadlineForm", deadlineForm);
+    model.addAttribute("index"       , index);
+
+    return "/contents/deadlines/editForm";
+  }
+
+  @RequestMapping(value = "/{index}/edit", method = RequestMethod.POST)
+  public String update(Principal principal, @PathVariable("index") int index, @Valid DeadlineForm deadlineForm, BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
+      return "/contents/deadlines/editForm";
+    }
+
+    Authentication auth = (Authentication)principal;
+    User loginUser = (User)auth.getPrincipal();
+
+    List<Deadline> deadlines = loginUser.getDeadlines();
+    Deadline deadline = deadlines.get(index);
+
+    String task  = deadlineForm.getTask();
+    int    year  = deadlineForm.getYear();
+    int    month = deadlineForm.getMonth();
+    int    day   = deadlineForm.getDay();
+    deadline.update(task, year, month, day);
+    
+    userRepository.save(loginUser);
+
+    return "redirect:/deadlines/" + index;
+  }
+
   @RequestMapping(value = "/new", method = RequestMethod.GET)
   public String showForm(DeadlineForm deadlineForm) {
     return "/contents/deadlines/register";

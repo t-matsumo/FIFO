@@ -5,6 +5,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import fifo.entity.Deadline;
+
 public class DeadlineForm {
   @NotNull
   @Size(min = 1)
@@ -24,6 +26,15 @@ public class DeadlineForm {
   @Min(1)
   @Max(31)
   private int day;
+
+  public DeadlineForm() {}
+
+  public DeadlineForm(String task, int year, int month, int day) {
+    this.task  = task;
+    this.year  = year;
+    this.month = month;
+    this.day   = day;
+  }
 
   public String getTask() {
     return this.task;
