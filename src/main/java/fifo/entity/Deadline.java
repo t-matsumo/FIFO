@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
+import fifo.form.DeadlineForm;
+
 @Entity
 public class Deadline implements Serializable {
   @Transient
@@ -42,6 +44,25 @@ public class Deadline implements Serializable {
     this.month     = month;
     this.day       = day;
     this.createdAt = new Timestamp(System.currentTimeMillis());
+  }
+
+  public String tell() {
+    return year + "年" + month + "月" + day + "日";
+  }
+
+  public DeadlineForm createDeadlineForm() {
+    return new DeadlineForm(task, year, month, day);
+  }
+
+  public void update(String task, int year, int month, int day) {
+    this.task  = task;
+    this.year  = year;
+    this.month = month;
+    this.day   = day;
+  }
+
+  public Long getId() {
+    return this.id;
   }
 
   public String getTask() {

@@ -1,0 +1,22 @@
+<th:block layout:decorator="common/layout" layout:fragment="content"> 
+  <h1>Deadlines</h1>
+ 
+  <div class="panel-group" th:if="${!deadlines.isEmpty()}">
+    <div class="panel panel-default" th:each="deadline : ${deadlines}">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <a th:href="@{'/deadlines/' + ${deadlineStat.index}}" th:text="${deadline.getTask()}">
+            タスク名
+          </a>
+        </h3>
+      </div>
+      <div class="panel-collapse collapse in">
+        <div class="panel-body" th:text="${deadline.tell()}">yyyy年mm月dd日</div>
+      </div>
+    </div>
+  </div>
+
+  <p th:if="${deadlines.isEmpty()}">登録されている期限はありません．</p>
+
+  <div><a href="/deadlines/new" class="btn btn-default">期限登録</a></div>
+</th:block>

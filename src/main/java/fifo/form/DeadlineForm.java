@@ -25,6 +25,15 @@ public class DeadlineForm {
   @Max(31)
   private int day;
 
+  public DeadlineForm() {}
+
+  public DeadlineForm(String task, int year, int month, int day) {
+    this.task  = task;
+    this.year  = year;
+    this.month = month;
+    this.day   = day;
+  }
+
   public String getTask() {
     return this.task;
   }
