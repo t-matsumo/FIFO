@@ -79,11 +79,15 @@ public class User implements Serializable, UserDetails {
   }
 
   public void addDeadline(Deadline deadline) {
+    // 更新するためにListを作りなおす
     deadlines.add(deadline);
+    deadlines = new ArrayList<Deadline>(deadlines);
   }
 
-  public Deadline removeDeadline(int index) {
-    return deadlines.remove(index);
+  public void removeDeadline(int index) {
+    // 更新するためにListを作り直す
+    deadlines.remove(index);
+    deadlines = new ArrayList<Deadline>(deadlines);
   }
 
   @Transient
