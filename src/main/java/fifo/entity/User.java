@@ -30,7 +30,7 @@ public class User implements Serializable, UserDetails {
   @Transient
   private static final long serialVersionUID = 1L;
 
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
   @OrderBy("year ASC, month ASC, day ASC")
   private List<Deadline> deadlines; 
 
@@ -80,6 +80,10 @@ public class User implements Serializable, UserDetails {
 
   public void addDeadline(Deadline deadline) {
     deadlines.add(deadline);
+  }
+
+  public Deadline removeDeadline(int index) {
+    return deadlines.remove(index);
   }
 
   @Transient

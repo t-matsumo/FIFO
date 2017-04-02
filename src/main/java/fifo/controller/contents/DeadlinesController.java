@@ -111,4 +111,15 @@ class DeadlinesController {
 
     return "redirect:/";
   }
+
+  @RequestMapping(value = "/{index}/delete", method = RequestMethod.POST)
+  public String delete(Principal principal, @PathVariable("index") int index) {
+    Authentication auth = (Authentication)principal;
+    User loginUser = (User)auth.getPrincipal();
+
+    loginUser.removeDeadline(index);
+    userRepository.save(loginUser);
+
+    return "redirect:/deadlines";
+  }
 }
