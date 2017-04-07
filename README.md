@@ -22,5 +22,5 @@ In projects root directory.
 ```
 ./gradlew bootRun
 ```
-Next, open http://localhost:8080 with your favorite web browser. 
+Next, open https://localhost:8080 with your favorite web browser. 
 (First running gradlew is very slowly, because it install gradle in user's home directory as hidden file.)
